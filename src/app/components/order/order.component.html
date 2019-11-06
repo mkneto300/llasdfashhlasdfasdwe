@@ -1,0 +1,111 @@
+
+<app-nav-menu   [show]="false"></app-nav-menu>
+<app-header></app-header>
+
+   <!-- /Header -->
+      <!-- Content Container
+       Colocar toda la informacion de las paginas unicas dentro de esto div  -->
+      <div class="contentContainer">
+        <!-- Space for product recommendations -->
+        <div class="row bodyContent">
+          <div class="twelve columns center">
+            <hr>
+            <h3>Your Products</h3>
+          </div>
+        </div>
+        <div class="row bodyContent ">
+            <div class="two columns">
+
+            </div>
+          <div class="seven columns">
+          <div class="four columns categoryPageBlock"  style="align-content: center; "
+          *ngFor="let lineItem of order?.lineItems">
+            <figure class="imghvr-fade">
+
+              <img src="/assets/images/products/{{lineItem.product.images[0].path}}"   [routerLink]="['/details', lineItem.product.id]"
+               height="175" width="200" alt="" class="responsiveImg ">
+              <figcaption>
+                <p [routerLink]="['/details', lineItem.product.id]"><strong>{{lineItem.product.name}}</strong></p>
+                <p>{{lineItem.product.description}}</p>
+                <p>Color: {{lineItem.product.color}}</p>
+                <p>Style: {{lineItem.product.style.styleName}}</p>
+              </figcaption>
+            </figure>
+            <!--
+            <h3>${{lineItem.product.price}}</h3>
+
+            -->
+            <br>
+            <a [routerLink]="['/details', lineItem.product.id]"><strong>{{lineItem.product.name}} ||
+               {{lineItem.product.price.standarPrice | currency}}</strong></a>
+
+            <div class="form-group row " style="text-align: center;">
+                <div class="col-md-2" >
+                    <p>Qtty:</p>
+                </div>
+                <div class="col-md-7">
+                    <input type="number" [(ngModel)]="lineItem.quantity" (change)="quantityChange()"
+                   name="quantity" value={{lineItem.quantity}} style="width:80%">
+                </div>
+                <div class="col-md-1">
+                    <br>
+                    <a (click)="deleteLineItem(lineItem.product.code)"  >
+                        <i class="fa fa-trash"></i> </a>
+                </div>
+            </div>
+            <!-- <a  (click)="deleteLineItem(lineItem.product.code)" >Delete</a> -->
+          </div>
+
+        </div>
+
+
+
+
+          <div class="three columns">
+
+              <!-- Success Alert -->
+              <app-alert></app-alert>
+
+
+              <div class="twelve columns " *ngIf="order.paymentOrder">
+
+                    <br>
+                    <h3>Total {{ order.paymentOrder.amount | currency}}</h3>
+                    <a *ngIf="user" (click)="saveOrder()" class="button button02" >Buy Now</a><br>
+                    <a *ngIf="!user"  [routerLink]="['/login']" class="button button02" >Buy Now</a><br>
+
+                    <button mat-button color="primary" [routerLink]="['/orderProducts']" >My Order</button><br>
+            </div>
+
+
+            <div *ngFor="let order of this.orders">
+              <div class="six columns categoryPageBlock" style="align-content: center; margin: 10%"
+              *ngFor="let lineItem of this.order.lineItems">
+                <figure class="imghvr-fade">
+                  <img src="/assets/images/products/{{lineItem.product.images[0].path}}"
+                  [routerLink]="['/details', lineItem.product.id]" alt="" class="responsiveImg ">
+                  <figcaption>
+                    <p [routerLink]="['/details', lineItem.product.id]"><strong>{{this.lineItem.product.name}}</strong></p>
+                    <p>{{this.lineItem.product.description}}</p>
+                    <p>Quantity: {{this.lineItem.quantity}}</p>
+                  </figcaption>
+                </figure>
+
+                 <!--
+                <h3>${{this.lineItem.product.price}}</h3>
+
+              -->
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- /Space for product recommendations -->
+
+      </div><!-- /Content Container -->
+
+      <app-footer></app-footer>
+

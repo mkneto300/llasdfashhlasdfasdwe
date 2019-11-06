@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="container">
+          
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div id="login-column" class="col-md-6">
+                <div id="login-box" class="col-md-12">
+                    
+                                  
+                </div>              
+            </div>         
+        </div>       
+    </div>
+    </div>
+        <!-- Custom styles for this template -->
+  
+            
+        <div class="card card-container" style="max-width: 500px !important" >
+                <div class="welcome text-aling-center" style="max-width: 500px !important">
+                        <img src="assets/images/logo-temp.jpg" alt=""   /> 
+                        <br/>
+                        <span  style="font-size: 2em;"><b>Create an account</b></span>
+                    </div>
+            <app-alert></app-alert>
+
+            <form class="form-signin" id="login-form" (submit)="validate()" class="form" >
+                    <div class="form-group row">
+
+                            <label for="inputFirstName" class="text-info col-sm-3 col-form-label">Name:</label>
+                        
+                            <div class="col-sm-9">
+
+                                    <input type="text" [(ngModel)]="user.name" name="inputFirstName" id="inputFirstName" class="form-control">
+
+                            </div>
+                    </div>
+                        <div class="form-group row" >
+                                <label for="inputLastName" class="text-info col-sm-3 col-form-label">Last Name:</label>
+
+                            <div class="col-sm-9">        
+                                <input type="text" [(ngModel)]="user.lastname" name="inputLastName" id="inputLastName" class="form-control">
+                            </div>
+
+                        </div>                        
+                    <div class="form-group row">
+                        <label for="inputUsername" class="text-info col-sm-3 col-form-label">User:</label>
+                        <div class="col-sm-9">
+                            <input type="text" [(ngModel)]="user.username" name="inputUserName" id="inputUserName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row" >
+                        <label for="inputPassword" class="text-info col-sm-3 col-form-label">Password:</label>
+                        <div class="col-sm-9">
+                            <input [(ngModel)]="user.password" type="password" name="inputPassword" id="inputPassword" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="inputAuxiliarPassword" class="text-info col-sm-3 col-form-label" >Repeat Password:</label>
+                      <div class="col-sm-9">
+                        <input [(ngModel)]="auxiliarPassword" type="password" name="inputAuxiliarPassword" id="inputAuxiliarPassword" class="form-control">
+                    </div>
+                  </div>
+                <div class="form-group row">
+                    <label for="inputEmail" class="text-info col-sm-3 col-form-label">Email:</label>
+                    <div class="col-sm-9">
+                        <input [(ngModel)]="user.email" type="email" name="inputEmail" id="inputEmail" class="form-control">
+                    </div>
+                </div>
+
+                
+                        <label for="inputCountry" class="text-info text-aling-center">Country:</label>
+                
+                                <select [(ngModel)]="countrySelected"  (change)="countryChange()" name="inputCountry" id="inputCountry" >
+                                        <option *ngFor="let country of countries" 
+                                       value="{{country.shortName}}"
+                                         >{{country.name}}</option>                           
+                                </select>
+                
+                
+                
+
+                <select *ngIf="showStates" [(ngModel)]="stateSelected"  (change)="stateChange()" name="inputState" id="inputState" >
+                        <option *ngFor="let state of states" 
+                       value="{{state}}">{{state}}</option>                           
+                </select>
+
+                <select *ngIf="showCities" [(ngModel)]="citySelected"   name="inputCity" id="inputCity" >
+                        <option *ngFor="let city of cities" 
+                       value="{{city}}">{{city}}</option>                           
+                </select>
+                <input type="text" [(ngModel)]="address" name="inputAddress" id="inputAddress" class="form-control">
+
+                  <app-alert></app-alert>
+                  <br>
+
+                  <a routerLink="/login" style="float: left; cursor:pointer; color:#007bff" >
+                    Sign in
+                 </a>
+                    <button mat-button color="primary" type="submit" style="float: right">Create</button>
+                   <br>
+                </form>  
+        </div><!-- /card-container -->

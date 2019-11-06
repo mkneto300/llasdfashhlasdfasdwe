@@ -1,0 +1,73 @@
+
+   <!-- Header -->
+   <app-nav-menu>
+ </app-nav-menu>
+
+   <!-- /Header -->
+      <!-- Content Container
+       Colocar toda la informacion de las paginas unicas dentro de esto div  -->
+      <div class="contentContainer">
+        <!-- Space for product recommendations -->
+
+        <div class=" ">
+            <div class=" ">
+                <div class="col-md-12  center">
+                  <h3>Your Profile</h3>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-md-12 center" >
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username:</label>
+                        <input class="form-control" name="username" value={{user?.username}} ><br>
+                     </div>
+                    
+                     <div class="form-group">
+                        <label for="exampleInputEmail1">Name</label>
+                        <input class="form-control"  name="name" value={{user?.name}}><br>
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Lastname</label>
+                          <input class="form-control" name="lastname" value={{user?.lastname}} ><br>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address:</label>
+                            <input  class="form-control" name="email" value={{user?.email}} ><br>
+                          </div>
+
+                      <button mat-button color="primary" (click)="changePasswordRequest()" >Change Password</button>
+                </div>
+                <div *ngIf="changePasswordComponent">
+                  <div class="form-group">
+                              <label for="inputCurrentPassword" class="text-info">Current Password:</label><br>
+                              <input [(ngModel)]="currentPaswword" type="password" name="inputCurrentPassword" id="inputCurrentPassword" class="form-control">
+                              <button mat-button color="primary" (click)="isAuthorized()" >Send</button>
+
+                  </div>
+                  <div *ngIf="isAuthorizedComponent">
+                      <div class="form-group">
+                          <label for="inputPassword" class="text-info">New Password:</label><br>
+                          <input [(ngModel)]="user.password" type="password" name="inputPassword" id="inputPassword" class="form-control">
+                      </div>
+
+                      <div class="form-group">
+                      <label for="inputAuxiliarPassword" class="text-info">Repeat New Password:</label><br>
+                      <input [(ngModel)]="auxiliarPassword" type="password" name="inputAuxiliarPassword" id="inputAuxiliarPassword" class="form-control"><br>
+                      <button mat-button color="primary" (click)="changePassword()" >Change</button>
+                      </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+
+
+
+
+
+        <!-- /Space for product recommendations -->
+
+      </div><!-- /Content Container -->
+
+      <app-footer></app-footer>

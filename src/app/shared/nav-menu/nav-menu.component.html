@@ -1,0 +1,25 @@
+
+  <div class="row blueStripe">
+        <div class="twelve columns right">
+          <ul class="topSecondary">
+            <li *ngIf="!isLogged" ><span class="fas fa-user"></span> <a  routerLink="/login" >Sign-in</a></li>
+            <li *ngIf="!isLogged" ><span class="fas fa-user"></span> <a  routerLink="/register" >Sign-up</a></li>
+            <li *ngIf="isLogged"  ><span class="fas fa-sign-out-alt"></span> <a  (click)="logout()" >Sign-out</a></li>
+            <li *ngIf="isLogged"  >| <span class="fas fa-user"></span><a  routerLink="/profile"  >Profile</a></li>
+            <li>| <a  routerLink="/order" > <i class="fa fa-shopping-cart"></i> Cart</a></li>
+            <li>| <a *ngIf="this.user?.role == 'Admin'" routerLink="/products/adminProducts" ><i class=" fas fa-th-list"></i> Admin Products</a></li>
+
+
+          </ul>
+        </div>
+      </div>
+
+      <div class="row logoSearch" *ngIf="show">
+          <div class="seven columns header-right">
+             <a  routerLink="/home">
+              <img src="assets/images/logo-temp.jpg" alt="" class="mainLogo">
+            </a>
+          </div>
+
+        </div>
+

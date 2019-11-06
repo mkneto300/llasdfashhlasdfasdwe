@@ -1,0 +1,373 @@
+<app-nav-menu>
+  </app-nav-menu>
+   <!-- /Header -->
+      <!-- Content Container
+       Colocar toda la informacion de las paginas unicas dentro de esto div  -->
+      <div class="contentContainer">
+        <!-- Space for product recommendations -->
+
+        <div class="form-group row center">
+            <div class="col-sm-12">
+
+              <h3>Admin Your Products</h3>
+
+            </div>
+        </div>
+
+
+        <div class="form-group row center">
+            <div class="col-sm-12">
+             <form class="example-form" (ngSubmit)="currentProduct()" >
+
+              <mat-form-field class="example-full-width">
+                <input type="text" style="border: none;" placeholder=" Search product"
+                  matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let product of filteredOptions | async" [value]="product">
+                    {{product.name}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <input type="submit"  (click)="showUpdateProductForm()"  value="Edit Product">
+              <a class="button" (click)="showAddProductForm()">Add Product</a>
+            </form>
+            </div>
+          </div>
+
+
+          <app-alert></app-alert>
+
+
+        <div class="row bodyContent">
+              <div class="container-fluid">
+
+                <div class="eight columns categoryPageBlock center" style="margin-right: 15%; margin-left: 15%;"
+                 *ngIf="showUpdateForm=='true' && product">
+                    <form  (ngSubmit)="updateProduct()">
+                      <input type="hidden" name="id" value={{this.product.id}} [(ngModel)]="this.product.id">
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="name" class="text-info">Name:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" value name="name" value={{this.product.name}} [(ngModel)]="this.product.name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="description" class="text-info">Description:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" value name="description" value={{this.product.description}}
+                            [(ngModel)]="this.product.description">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="code" class="text-info">Code:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" value name="code" value={{this.product.code}} [(ngModel)]="this.product.code">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="color" class="text-info">Color:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="text" value name="color" value={{this.product.color}}
+                            [(ngModel)]="this.product.color">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="price" class="text-info">Price:</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <input type="number" value name="price" value={{this.product.price.standarPrice}}
+                            [(ngModel)]="this.product.price.standarPrice">
+                        </div>
+
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3"  style="text-align: left;">
+                            <label for="description" class="text-info">Small Size Price:</label>
+                          </div>
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3">
+                            <input type="number"  value={{product.price.smallPrice}} name="smallPrice" placeholder="$"
+                            [(ngModel)]="this.product.price.smallPrice">
+                          </div>
+
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3" style="text-align: left;">
+                            <label for="description" class="text-info">Medium Size Price:</label>
+                          </div>
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3" >
+                            <input type="number" value={{product.price.mediumPrice}} name="mediumPrice" placeholder="$"
+                            [(ngModel)]="this.product.price.mediumPrice">
+                          </div>
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3" style="text-align: left;">
+                            <label for="description" class="text-info">Big Size Price:</label>
+                          </div>
+                          <div *ngIf="this.product.subCategory.subCategoryName== 'Bed'" class="col-sm-3">
+                            <input type="number" value={{product.price.bigPrice}} name="bigPrice" placeholder="$"
+                            [(ngModel)]="this.product.price.bigPrice">
+                          </div>
+                    </div>
+                    <div class="form-group row " style="text-align: center;">
+                        <div class="col-md-6" >
+                            <input type="submit" class="button" value="Update">
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn danger" (click)='deleteProduct()' >Delete </button>
+                        </div>
+                    </div>
+
+
+                    </form>
+
+
+                </div>
+
+                <div *ngIf="showAddForm=='true'" class="eight columns categoryPageBlock center" style="margin-right: 15%; margin-left: 15%;">
+                  <form   >
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label aria-required="true" for="name" class="text-info">Name:</label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <input  type="text" id="name" value name="name"
+                             [(ngModel)]="this.newProduct.name" required #name="ngModel"/>
+                        </div>
+                        <div *ngIf="name.invalid &&  (name.dirty || name.touched)"
+                            class="alert alert-danger">
+
+                          <div *ngIf="name.errors['required']">
+                            Product name is required.
+                          </div>
+                        </div>
+
+
+                    </div>
+
+                     <div class="form-group row">
+
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label for="description" class="text-info">Description:</label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <input type="text" value name="description"  [(ngModel)]="this.newProduct.description"
+                            required #description="ngModel">
+                        </div>
+                        <div *ngIf="description.invalid && (description.dirty || description.touched)"
+                            class="alert alert-danger">
+
+                          <div *ngIf="description.errors['required']">
+                            Description is required.
+                          </div>
+                        </div>
+                     </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label for="code" class="text-info">Code:</label>
+                        </div>
+
+                        <div class="col-sm-9">
+                            <input type="text" value name="code"  [(ngModel)]="this.newProduct.code"
+                            required maxlength="10" #code="ngModel">
+                        </div>
+                        <div *ngIf="code.invalid && (code.dirty || code.touched)"
+                            class="alert alert-danger">
+                          <div *ngIf="code.errors['required']">
+                            Code is required.
+                          </div>
+                          <div *ngIf="code.errors['maxlength']">
+                            Code must be less than 10 characters
+                          </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-sm-3" style="text-align: left;">
+                            <label for="category" class="text-info">Category:</label>
+                        </div>
+                        <div class="col-sm-3 " >
+                            <select [(ngModel)]="this.newProduct.category"  style="width:80%" name="category" id="category"
+                            required #category="ngModel">
+                                <option *ngFor="let category of categories"
+                                [ngValue]="category">{{category.name}}</option>
+                              </select>
+
+                          <div *ngIf="category.invalid && (category.dirty || category.touched)"
+                              class="alert alert-danger">
+
+                            <div *ngIf="category.errors['required']">
+                              Category is required.
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-3" style="text-align: left;">
+                          <label for="subCategory" class="text-info">Sub-Category:</label>
+                      </div>
+                      <div class="col-sm-3 ">
+                          <select [(ngModel)]="this.newProduct.subCategory"  style="width:80%" name="subCategory" id="subCategory"
+                          required #subCategory="ngModel">
+                              <option *ngFor="let subCategory of subCategories"
+                              [ngValue]="subCategory">{{subCategory.subCategoryName}}</option>
+                            </select>
+
+                            <div *ngIf="subCategory.invalid && (subCategory.dirty || subCategory.touched)"
+                              class="alert alert-danger">
+
+                            <div *ngIf="subCategory.errors['required']">
+                              Category is required.
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+
+
+
+                    <div class="form-group row">
+                      <div class="col-sm-3" style="text-align: left;">
+                          <label for="style" class="text-info">Style:</label>
+                      </div>
+                      <div class="col-sm-3 ">
+                        <select [(ngModel)]="this.newProduct.style"  style="width:80%" name="style" id="style"
+                        required #style="ngModel" >
+                          <option *ngFor="let style of styles"
+                          [ngValue]="style">{{style.styleName}}</option>
+                        </select><br>
+
+                        <div *ngIf="style.invalid && (style.dirty || style.touched)"
+                            class="alert alert-danger">
+
+                          <div *ngIf="style.errors['required']">
+                              Style is required.
+                          </div>
+                      </div>
+                      </div>
+
+                      <div class="col-sm-3 " style="text-align: left;">
+                        <label for="set" class="text-info">Set:</label>
+                    </div>
+                    <div class="col-sm-3" style="text-align: left;">
+                      <select [(ngModel)]="this.newProduct.set" style="width:80%" name="set" id="set"
+                      required  >
+                        <option *ngFor="let set of sets"
+                        [ngValue]="set">{{set.setName}}</option>
+                      </select><br>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+
+                    <div class="col-sm-3" style="text-align: left;">
+                        <label for="standarPrice" class="text-info">Standar Price:</label>
+                    </div>
+
+                    <div class="col-sm-3" >
+                      <input type="number" value name="standarPrice" placeholder="$" [(ngModel)]="this.price.standarPrice"
+                      required #standarPrice="ngModel">
+
+                      <div *ngIf="standarPrice.invalid && (standarPrice.dirty || standarPrice.touched)"
+                      class="alert alert-danger">
+                          <div *ngIf="standarPrice.errors['required']">  Price is required. </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName== 'Bed'" class="col-sm-3"  style="text-align: left;">
+                      <label for="description" class="text-info">Small Size Price:</label>
+                    </div>
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName == 'Bed'" class="col-sm-3">
+                      <input type="number" data-type="currency" value name="smallPrice" placeholder="$" [(ngModel)]="this.price.smallPrice">
+                    </div>
+
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName == 'Bed'"class="col-sm-3" style="text-align: left;">
+                      <label for="description" class="text-info">Medium Size Price:</label>
+                    </div>
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName == 'Bed'"class="col-sm-3" >
+                      <input type="number" value name="mediumPrice" placeholder="$" [(ngModel)]="this.price.mediumPrice">
+                    </div>
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName == 'Bed'"class="col-sm-3" style="text-align: left;">
+                      <label for="description" class="text-info">Big Size Price:</label>
+                    </div>
+                    <div *ngIf="this.newProduct?.subCategory?.subCategoryName == 'Bed'"class="col-sm-3">
+                      <input type="number" value name="bigPrice" placeholder="$" [(ngModel)]="this.price.bigPrice">
+                    </div>
+                 </div>
+
+
+                 <div class="form-group row">
+                  <div class="col-sm-3" style="text-align: left;">
+                      <label for="category" class="text-info">Select Materials:</label>
+                  </div>
+                  <div class="col-sm-3 ">
+                    <mat-form-field>
+                      <mat-select [(ngModel)]="this.newProduct.materials" name="material" id="material" multiple>
+                        <mat-option *ngFor="let material of materials" [value]="material">
+                          {{material.materialName}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col-sm-3 " style="text-align: left;" >
+                    <label for="category" class="text-info">Color:</label>
+                </div>
+                <div class="col-sm-3" style="text-align: left;">
+                  <select [(ngModel)]="this.newProduct.color" style="width:80%" name="color" id="color" >
+                    <option *ngFor="let color of colors"
+                    [ngValue]="color">{{color}}</option>
+                  </select><br>
+                </div>
+                </div>
+
+                <div class="form-group row" style="text-align: left;">
+                  <div class="col-sm-3 " style="align-content:flex-end;">
+                    <label for="category" class="text-info">Select Images:</label>
+                </div>
+                <div class="col-sm-3" >
+                  <input type='file' style="display: none"  (change)="onSelectFile($event)" #fileInput
+                    multiple >
+                    <a class="button" (click)="fileInput.click()" type="text">Select Images</a>
+                </div>
+                </div>
+
+                    <input type="submit" value="Save" (click)="addProduct()">
+
+                    <app-alert></app-alert>
+
+                    <div class="row">
+                      <div *ngFor='let url of imageUrls' class="two half columns categoryPageBlock"
+                        style="margin: 20px">
+                        <img  [src]="url" height="90%" width="90%" class="responsiveImg categoryBlock">
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+
+
+
+
+
+        </div>
+        <!-- /Space for product recommendations -->
+
+      </div><!-- /Content Container -->
+
+      <app-footer></app-footer>
+

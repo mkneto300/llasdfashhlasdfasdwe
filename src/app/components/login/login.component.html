@@ -1,0 +1,43 @@
+
+
+        <!-- Custom styles for this template -->
+
+
+            <div class="card card-container" >
+
+                    <div class="welcome text-aling-center">
+                            <img src="assets/images/logo-temp.jpg" alt=""   />
+                           <br/>
+                            <span  style="font-size: 2em;"><b>Sign in</b></span>
+                        </div>
+                <app-alert></app-alert>
+
+                <form class="form-signin" id="login-form" (submit)="validateData()"    method="POST" style="margin-top: 10%;">
+
+
+                        <div class="form-group">
+                                <label for="inputUsername" class="text-info">User:</label><br>
+                                <input type="text" [(ngModel)]="user.username" name="inputUserName" id="inputUserName" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="text-info">Password:</label><br>
+                                <input [(ngModel)]="user.password" type="password" name="inputPassword" id="inputPassword" class="form-control"><br>
+                            </div>
+                            <a routerLink="/forgetpass"  style="float: left; cursor:pointer; color:#007bff" >
+                                Forget password?
+                        </a>
+                        <br>
+
+
+
+                                    <button mat-button color="primary" type="submit" style="float: right; "> Sign in
+                                         </button>
+
+                                         <button mat-button color="primary" routerLink="/register"  style="float: left;">
+                                                Sign up
+                                             </button>
+                       <br>
+                       <br>
+                </form>
+            </div><!-- /card-container -->
+

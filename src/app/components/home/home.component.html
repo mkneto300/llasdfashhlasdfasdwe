@@ -1,0 +1,90 @@
+ <app-nav-menu   [show]="false"></app-nav-menu>
+ 
+ <!------ Header from HeaderComponent Child of Home Component-->
+    <app-header
+      [products]="products"
+      (changes)="onChanges()">
+    </app-header> 
+
+
+<!--- Header from HeaderComponent -->
+
+<div class="row">
+  <div class="twelve columns">
+    <div class="slider animated fadeIn">
+
+      <!-- Home Slider ------ Full screen home slider -->
+      <ul class="rslides" id="slider1">
+        <li>
+                <span class="slidertexture"></span>
+                <img src="assets/images/slides/slide-01.jpg" alt="">
+                <div class="slidercontent">
+                  <div class="row">
+                    <div class="twelve columns center">
+                      <h1>Large title Call</h1>
+                    <p>
+                      Part of the content
+                    </p>
+                    <!-- 
+                      <a href="#" class="sliderButton" >Call to Action</a>
+                     -->
+                    
+                  </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="slidertexture"></span>
+                <img src="assets/images/slides/slide-02.jpg" alt="">
+                <div class="slidercontent">
+                  <div class="row">
+                    <div class="twelve columns center"><h1>Large title Call</h1>
+                    <p>
+                      Part of the content
+                    </p>
+                    <!-- 
+                      <a href="#" class="sliderButton" >Call to Action</a>
+                    -->                                    
+                  </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <span class="slidertexture"></span>
+                <img src="assets/images/slides/slide-03.jpg" alt="">
+                <div class="slidercontent">
+                  <div class="row">
+                    <div class="twelve columns center"><h1>Large title Call</h1>
+                    <p>
+                      Part of the content
+                    </p>
+                    <!-- 
+                      <a href="#" class="sliderButton" >Call to Action</a>
+                     -->                    
+                  </div>
+                  </div>
+                </div>
+              </li>
+      </ul>
+    </div><!-- /Home Slider -->
+
+
+  </div>
+</div>
+<!-- Content Container
+      ----------------------------------------------------------
+      Colocar toda la informacion de las paginas unicas dentro de esto div  -->
+
+      <app-product [products]="products"></app-product>
+      <!-- Content Container
+      --------------------------------------------------------------
+      -- ProductComponent child of Home Component  -->
+
+      <!-- Content Container
+      --------------------------------------------------------------
+      -- FooterComponent child of Home Component  -->
+
+<app-footer></app-footer>
+
+
+

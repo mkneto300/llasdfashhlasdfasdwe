@@ -1,0 +1,65 @@
+<pagination-controls style="text-align: right;" (pageChange)="p=$event" ></pagination-controls>
+<div class="">
+    <div class="row ">
+
+
+      <div class="three columns categoryPageBlock" style="align-content: center; margin: 20px"
+      *ngFor="let product of products | paginate: { itemsPerPage: 8, currentPage: p }">
+
+        <!-- /Multiple Images
+        <img *ngFor="let image of product.images"
+        src="assets/images/products/{{image.path}}" class="responsiveImg categoryBlock">
+
+        Multiple Images works perfect -->
+
+        <img
+        src="/assets/images/products/{{product?.images[0].path}}"  height="75%" width="90%"  [routerLink]="['/details', product.id]"
+        class="responsiveImg categoryBlock">
+        <br>
+        <br>
+        <h3  [routerLink]="['/details', product.id]">{{product.name }}</h3>
+
+
+      </div>
+
+    </div>
+
+
+    <pagination-controls  (pageChange)="p=$event" ></pagination-controls>
+
+
+
+
+    <div class="row bodyContent">
+      <div class="one-half column deals">
+        <img src="assets/images/deals-category-01.jpg" alt="" class="responsiveImg">
+      </div>
+      <div class="one-half column deals">
+        <img src="assets/images/deals-category-02.jpg" alt="" class="responsiveImg">
+      </div>
+
+    </div>
+
+    <div class="row bodyContent">
+      <div class="one-third column center">
+        <img src="assets/images/money.jpg" alt="" class="responsiveImg">
+        <h4>The Best Valued Products Every Day</h4>
+        <p>Everything you love at the right prices for your budget.</p>
+        <a href="#" class="button button02" >Shop Now</a>
+      </div>
+      <div class="one-third column center">
+        <img src="assets/images/delivery.jpg" alt="" class="responsiveImg">
+        <h4>Free Shipping on selected items!</h4>
+        <p>Fast and safe delivery for your items directly to your home.</p>
+        <a href="#" class="button button02" >Shop Now</a>
+      </div>
+      <div class="one-third column center">
+        <img src="assets/images/people.jpg" alt="" class="responsiveImg">
+        <h4>We’re friends ready to help you</h4>
+        <p>Our amazing team is ready to partner up to get you great deals.</p>
+        <a href="#" class="button button02" >Shop Now</a>
+      </div>
+    </div>
+
+  </div><!-- /Content Container -->
+

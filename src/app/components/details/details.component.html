@@ -1,0 +1,135 @@
+<app-nav-menu   [show]="false"></app-nav-menu>
+<app-header></app-header>
+
+        <div class="row bodyContent">
+            <div class="one columns">
+
+            </div>
+          <div class="six columns">
+            <div class="img-hover-zoom img-hover-zoom--slowmo">
+              <img src="/assets/images/products/{{images[0]?.path}}" alt="" class="responsiveImg ">
+            </div>
+
+            <div *ngFor="let image of images" class="three columns categoryPageBlock"
+               style="margin: 20px">
+              <img src="/assets/images/products/{{image.path}}" height="80%" width="90%"class="responsiveImg categoryBlock">
+            </div>
+          </div>
+
+
+
+      <div class="four columns">
+            <app-alert></app-alert>
+            <h3>{{product?.name }}</h3>
+            <p>{{showPrice | currency }}</p>
+            <a (click)="addToCart()" class="button button02" >Add to cart</a>
+
+            <p>
+              <strong>More details about the product</strong>
+            </p>
+            <p>
+                {{product?.description}}
+            </p>
+            <ul>
+              <li>Feature 01</li>
+              <li>Another feature</li>
+              <li>More features</li>
+              <li>Yet another feature</li>
+              <li>One last feature</li>
+            </ul>
+
+
+
+          <div *ngIf="this.product.subCategory?.subCategoryName== 'Bed'">
+              <div style="text-align: left;">
+                  <label for="description" class="text-info">Select Size:</label>
+              </div>
+              <mat-form-field>
+                <mat-label>Choose an option</mat-label>
+                <mat-select [(ngModel)]="this.sizeSelected" (selectionChange)='updatePrice()' name="food">
+                  <mat-option *ngFor="let size of sizeNames" [value]="size">
+                    {{size}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+          </div>
+
+
+
+
+          <h3 style="margin: 20px;">COMPLETE THE SET</h3>
+          <div class="block block-related">
+            <div *ngFor="let productSet of productsSet"  >
+                <div *ngIf="productSet.id != this.product.id" style="margin: 20px" class="five columns categoryPageBlock">
+
+                    <img
+                    src="/assets/images/products/{{productSet.images[0].path}}"  height="200" width="175"
+                    [routerLink]="['/details', productSet.id]"
+                    class="responsiveImg categoryBlock">
+                    Price: {{productSet.price.standarPrice | currency }}
+                    <h3 [routerLink]="['/details', productSet.id]">{{productSet.name }} </h3>
+
+
+
+                 </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+
+        <!-- Space for product recommendations -->
+        <div class="row bodyContent">
+          <div class="twelve columns center">
+            <hr>
+            <h3>You may also like</h3>
+          </div>
+        </div>
+        <div class="row bodyContent">
+
+
+          <div class="four columns categoryPageBlock">
+            <figure class="imghvr-fade">
+              <img src="/assets/images/product-image.jpg" alt="" class="responsiveImg ">
+              <figcaption>
+                <p><strong>Product name</strong></p>
+                <p>Short category description goes here</p>
+              </figcaption>
+            </figure>
+            <h3>$25.00</h3>
+            <a href="#" class="button button02" >Buy Now</a>
+          </div>
+
+
+
+          <div class="four columns categoryPageBlock">
+            <figure class="imghvr-fade">
+              <img src="/assets/images/product-image.jpg" alt="" class="responsiveImg ">
+              <figcaption>
+                <p><strong>Product name</strong></p>
+                <p>Short category description goes here</p>
+              </figcaption>
+            </figure>
+            <h3>$25.00</h3>
+            <a href="#" class="button button02" >Buy Now</a>
+          </div>
+          <div class="four columns categoryPageBlock">
+            <figure class="imghvr-fade">
+              <img src="/assets/images/product-image.jpg" alt="" class="responsiveImg ">
+              <figcaption>
+                <p><strong>Product name</strong></p>
+                <p>Short category description goes here</p>
+              </figcaption>
+            </figure>
+            <h3><span class="promo">$25.00</span> $15.00</h3>
+            <a href="#" class="button button02" >Buy Now</a>
+          </div>
+        </div>
+        <!-- /Space for product recommendations -->
+
+      <app-footer></app-footer>
+
+

@@ -1,0 +1,52 @@
+<app-nav-menu   [show]="false"></app-nav-menu>
+<app-header></app-header>
+<div class="row">
+    <div  class="col-sm-5">
+
+    </div>
+  <div  class="col-sm-2">
+      <div class="row">
+          <div  class="col-sm-4">
+              <br>
+            Sort by:
+        </div>
+        <div  class="col-sm-6">
+              <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                  <option selected>Choose...</option>
+                  <option value="1">Newest</option>
+                  <option value="2">Price: Hight to low</option>
+                  <option value="3">Price: Low to high</option>
+              </select>
+        </div>
+      </div>
+  </div>
+  <div  class="col-sm-2">
+    <br>
+        <pagination-controls style="text-align: right;" (pageChange)="p=$event" ></pagination-controls>
+  </div>
+  <div  class="col-sm-3">
+
+  </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-sm-4" style="text-align: right;">
+        <app-sidebar></app-sidebar>
+    </div>
+
+    <div class="col-sm-8 " style="align-items: left">
+      <div class="three columns categoryPageBlock" style="margin: 20px"
+      *ngFor="let product of products | paginate: { itemsPerPage: 9, currentPage: p }">
+        <img
+        src="assets/images/products/{{product.images[0].path}}"  [routerLink]="['/details', product.id]"
+        class="responsiveImg categoryBlock" height="200" width="200">
+
+        Price: {{product.price.standarPrice | currency }}
+        <h3 [routerLink]="['/details', product.id]">{{product.name }}</h3>
+
+      </div>
+    </div>
+    <pagination-controls  (pageChange)="p=$event" ></pagination-controls>
+  </div><!-- /Content Container -->

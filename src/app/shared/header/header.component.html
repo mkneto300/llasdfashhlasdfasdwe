@@ -1,0 +1,582 @@
+<header>
+
+    <div class="row logoSearch align-items-center">
+
+        <div class="col-md-6 text-left">
+           <a  routerLink="/home">
+             <img src="assets/images/logo-temp.jpg" alt="Go to home" class="mainLogo">
+          </a>
+        </div>
+
+
+        <div class="col-md-6" style="text-align: right;">
+          <div class="container">
+              <form  (ngSubmit)="getProductsBySearch(myControl.value)" >
+
+                    <input  type="search" placeholder="Search for your products" style="margin: 0%;"  matInput
+                    [(formControl)]="myControl" [matAutocomplete]="auto" >
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" >
+                      <mat-option *ngFor="let product of filteredOptions | async" [value]="product">
+                        {{product.name}}
+                      </mat-option>
+                    </mat-autocomplete>
+
+                  <button type="submit" class="button search" value="Search"  >
+                    <i class="fas fa-search"></i> Search</button>
+              </form>
+         </div>
+        </div>
+    </div>
+
+
+<!--     <div class="row">
+      <div class="twelve columns center">
+        
+        <ul class="maintopNav" name="Categories">
+
+              <li  *ngFor="let category of categories">
+
+                <a class="custome-pointer"  name="nameCategory"
+                routerLink="/{{category.name}}/{{category.id}}"   >{{category.name}} </a>
+
+              </li>
+        </ul>
+      </div>
+    </div> -->
+
+
+    <div id="categories-menu-holder" class="row"><!-- /Menu container -->
+
+      <div class="col-md-12 text-center dropdown"> <!-- /Categories container -->
+
+
+  <div class="btn-group">
+
+
+        <button type="button" routerLink="/bedroom/1" class="btn btn-light">BEDROOM</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+
+    <div class="dropdown-menu dropdown-menu-center container bedroom" style="width:70vw;">
+
+      <div class="row">
+
+            <div class="col-md-3">
+
+              <figure class="d-flex flex-row justify-content-center align-items-center">
+                <a href="" class="p-2">
+                  <img src="../../../assets/images/categories_menu/bed_5.png" alt="Bed">
+                </a>
+              </figure>
+
+            </div>
+
+            <div class="col-md-3" >
+
+              <figure class="d-flex flex-row justify-content-center align-items-center">
+                <a href="">
+                  <img src="../../../assets/images/categories_menu/bedframe_2.png" alt="Bed">
+                </a>
+              </figure>
+
+            </div>
+
+            <div class="col-md-3">
+
+              <figure class="d-flex flex-row justify-content-center align-items-center">
+                <a href="">
+                  <img src="../../../assets/images/categories_menu/bedroom-mediachest_1.png" alt="Bed">
+                </a>
+              </figure>
+
+            </div>
+
+            <div class="col-md-3">
+
+              <figure class="d-flex flex-row justify-content-center align-items-center">
+                <a href="">
+                  <img src="../../../assets/images/categories_menu/chest_7.png" alt="Bed">
+                </a>
+              </figure>
+
+            </div>
+
+      </div>  <!-- FIRST ROW -->
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/mattress_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/headboard_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/nightstand_2.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dressermirror_3.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- SECOND ROW -->
+    </div>
+
+  </div>
+
+  <div class="btn-group">
+
+        <button type="button" routerLink="/living/1" class="btn btn-light">LIVING</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+    <div class="dropdown-menu dropdown-menu-center container living" style="width:70vw;">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="" class="p-2">
+              <img src="../../../assets/images/categories_menu/living-sofa_4.png" alt="Sofa">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-loveseat_8.png" alt="Love seat">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-chair_1.png" alt="Chair">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-sectional_2.png" alt="Sectional">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- FIRST ROW -->
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-recliner_4.png" alt="Recliner">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-futon_4.png" alt="Futon">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-coffeetable_5.png" alt="Coffee table">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/living-tvconsole_3.png" alt="TV console">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- SECOND ROW -->
+    </div>
+  </div>
+
+  <div class="btn-group">
+
+
+        <button type="button" routerLink="/dining/1" class="btn btn-light">DINING</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+
+    <div class="dropdown-menu dropdown-menu-center container dining" style="width:70vw;">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="" class="p-2">
+              <img src="../../../assets/images/categories_menu/dining-table_5.png" alt="Daning Table">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dining-chair_5.png" alt="Dining Chair & bench">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dining-hutchbuffet_2.png" alt="Curio & Hutch buffet">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dining-server_2.png" alt="Server">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- FIRST ROW -->
+
+    </div>
+  </div>
+
+  <div class="btn-group">
+
+        <button type="button" routerLink="/patio/1" class="btn btn-light">PATIO</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+
+    <div class="dropdown-menu dropdown-menu-center container patio" style="width:70vw;">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="" class="p-2">
+              <img src="../../../assets/images/categories_menu/bed_5.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/bedframe_2.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/bedroom-mediachest_1.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/chest_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- FIRST ROW -->
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/mattress_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/headboard_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/nightstand_2.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dressermirror_3.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- SECOND ROW -->
+    </div>
+  </div>
+
+
+  <div class="btn-group">
+
+
+        <button type="button" routerLink="/office/1" class="btn btn-light">OFFICE</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+
+    <div class="dropdown-menu dropdown-menu-center container office" style="width:70vw;">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="" class="p-2">
+              <img src="../../../assets/images/categories_menu/bed_5.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/bedframe_2.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/bedroom-mediachest_1.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/chest_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- FIRST ROW -->
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/mattress_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/headboard_7.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/nightstand_2.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dressermirror_3.png" alt="Bed">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- SECOND ROW -->
+    </div>
+  </div>
+
+
+  <div class="btn-group">
+
+        <button type="button" routerLink="/outdoors/1" class="btn btn-light">OUTDOOR</button>
+        <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+
+
+    <div class="dropdown-menu dropdown-menu-center container outdoor" style="width:70vw;">
+
+      <div class="row">
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="" class="p-2">
+              <img src="../../../assets/images/categories_menu/outdoor-sofa_1.png" alt="Sofa & sectional">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/outdoor-bench.png" alt="Chair & bench">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/outdoor-accessories_1.png" alt="Accessories">
+            </a>
+          </figure>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <figure class="d-flex flex-row justify-content-center align-items-center">
+            <a href="">
+              <img src="../../../assets/images/categories_menu/dining-table_5.png" alt="Patio Dining">
+            </a>
+          </figure>
+
+        </div>
+
+      </div> <!-- FIRST ROW -->
+
+    </div>
+  </div>
+
+      </div> <!-- /Categories container -->
+
+    </div><!-- /Menu Container -->
+
+</header><!-- /Header -->
